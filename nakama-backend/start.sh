@@ -16,10 +16,22 @@ if [ -z "$DB_URL" ]; then
 fi
 
 # Extract database address from DB_URL (remove postgresql:// prefix)
-DB_ADDR=$(echo "$DB_URL" | sed 's|^postgresql://||')
+echo "Original DB_URL: '$DB_URL'"
+echo "Testing sed command..."
+TEST_ADDR=$(echo "$DB_URL" | sed 's|^postgresql://||')
+echo "After sed: '$TEST_ADDR'"
+
+DB_ADDR="$TEST_ADDR"
 
 echo "Database Address: $(echo "$DB_ADDR" | sed 's|:[^@]*@|:***@|')"
-echo "Final DB_ADDR for Nakama: $DB_ADDR"
+echo "Final DB_ADDR for Nakama: '$DB_ADDR'"
+
+# Validate DB_ADDR is not empty
+if [ -z "$DB_ADDR" ]; then
+  echo "ERROR: DB_ADDR is empty after processing DB_URL"
+  echo "This indicates a problem with the DB_URL format or sed command"
+  exit 1
+fi
 
 echo "=== Running database migration ==="
 /nakama/nakama migrate up --database.address "$DB_ADDR"
