@@ -36,6 +36,10 @@ fi
 echo "=== Running database migration ==="
 /nakama/nakama migrate up --database.address "$DB_ADDR"
 
+# Starting Nakama server
+# Note: CORS origins are best handled via NAKAMA_SOCKET_CORS_ALLOWED_ORIGIN 
+# and NAKAMA_CONSOLE_CORS_ALLOWED_ORIGIN environment variables in production.
+
 echo "=== Starting Nakama on port $PORT ==="
 exec /nakama/nakama \
   --name nakama1 \

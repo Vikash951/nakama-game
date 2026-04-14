@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-// import { Client } from "@heroiclabs/nakama-js";
-=======
 import { Client } from "@heroiclabs/nakama-js";
 
 //import { Client } from "@heroiclabs/nakama-js";
@@ -17,21 +14,14 @@ export const client = new Client("defaultkey", HOST, "443", USE_SSL);
 // const PORT = 7350;
 // const USE_SSL = false;
 
->>>>>>> 9467431 (build issues fixed)
 // export const client = new Client("defaultkey", HOST, PORT, USE_SSL);
 
 //import { Client } from "@heroiclabs/nakama-js";
 
 // Change these to your Railway production details
-<<<<<<< HEAD
-const HOST = "nakama-game-jpke.onrender.com"; 
-const PORT = "443"; // Standard port for HTTPS/SSL on Railway
-const USE_SSL = true; // Railway automatically provides SSL certificates
-=======
 //const HOST = "nakama-game-production.up.railway.app"; 
 //const PORT = "443"; // Standard port for HTTPS/SSL on Railway
 //const USE_SSL = true; // Railway automatically provides SSL certificates
->>>>>>> 9467431 (build issues fixed)
 
 //export const client = new Client("defaultkey", HOST, PORT, USE_SSL);
 

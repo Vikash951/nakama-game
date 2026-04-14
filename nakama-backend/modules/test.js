@@ -1,8 +1,3 @@
-function matchmakerMatched(ctx, logger, nk, matches) {
-    logger.error("SUPER TEST LOG HOOK");
-    return nk.matchCreate("tictactoe", {});
-}
-function InitModule(ctx, logger, nk, initializer) {
-    initializer.registerMatchmakerMatched(matchmakerMatched);
-    logger.info("Test module loaded");
-}
+// This file is intentionally left empty.
+// It was previously used for testing and conflicted with index.js
+// by registering a duplicate matchmakerMatched handler.
