@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { client } from '../nakama';
+import React from 'react';
 
 interface ResultScreenProps {
   winnerId: string | null;
@@ -14,12 +13,9 @@ interface ResultScreenProps {
 
 export const ResultScreen: React.FC<ResultScreenProps> = ({ 
   winnerId, 
-  winnerSymbol, 
   isDraw, 
   reason, 
   myUserId, 
-  players, 
-  session,
   onBackToLobby 
 }) => {
   const isWinner = winnerId === myUserId;

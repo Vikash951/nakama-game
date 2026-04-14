@@ -129,7 +129,7 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, soc
             No records yet. Be the first!
           </div>
         ) : (
-          leaderboard.map((r, i) => (
+          leaderboard.map((r) => (
             <div key={r.owner_id} className="leaderboard-row">
               <span>{r.rank}. {r.username}</span>
               <span style={{ fontWeight: 600, color: 'var(--accent-color)' }}>{r.score} wins</span>

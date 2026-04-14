@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { authenticateDevice, setDisplayName } from '../nakama';
+import { authenticateDevice, setDisplayName, connectSocket } from '../nakama';
 
 interface LoginScreenProps {
   onLogin: (session: any, nickname: string) => void;
@@ -23,7 +23,6 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin }) => {
       const taggedName = await setDisplayName(session, nickname);
       
       // Phase 1 check: We need to connect the socket before entering the lobby
-      const { connectSocket } = await import('../nakama');
       await connectSocket(session);
       
       onLogin(session, taggedName);
