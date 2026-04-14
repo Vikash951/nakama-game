@@ -43,6 +43,4 @@ exec /nakama/nakama \
   --logger.level INFO \
   --session.token_expiry_sec 7200 \
   --runtime.path /nakama/data/modules \
-  --socket.port "$PORT" \
-  --socket.cors_allowed_origin "*" \
-  --console.cors_allowed_origin "*"
+  --socket.port "$PORT"
