@@ -7,12 +7,5 @@ COPY modules/ /nakama/data/modules/
 # Copy and prepare the startup script
 COPY start.sh /nakama/start.sh
 
-# Switch to root briefly to set permissions, then back to nakama user
-USER root
-RUN chmod +x /nakama/start.sh
-USER nakama
-
-# Expose the Nakama socket API port
-EXPOSE 7350
-
-ENTRYPOINT ["/nakama/start.sh"]
+# No need to switch users; run start.sh directly via sh to avoid permission issues
+ENTRYPOINT ["sh", "/nakama/start.sh"]
