@@ -20,28 +20,20 @@ services:
 
   nakama:
     container_name: nakama
-    image: registry.heroiclabs.com/heroiclabs/nakama:3.22.0
-    entrypoint:
-      - "/bin/sh"
-      - "-ecx"
-      - >
-        until command -v nc >/dev/null && nc -z postgres 5432; do
-          echo "Waiting for Postgres to be reachable on port 5432..."
-          sleep 1
-        done;
-        /nakama/nakama migrate up --database.address postgres:localdb@postgres:5432/nakama &&
-        exec /nakama/nakama --name nakama1 --database.address postgres:localdb@postgres:5432/nakama \
-          --logger.level DEBUG \
-          --session.token_expiry_sec 7200 \
-          --runtime.path /nakama/data/modules \
-          --socket.cors_allowed_origin "*" \
-          --console.cors_allowed_origin "*"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=localdb
+      - DB_NAME=nakama
+      - PORT=7350
     restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
-    volumes:
-      - ./modules:/nakama/data/modules
     ports:
       - "7349:7349"
       - "7350:7350"
