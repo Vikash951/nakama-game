@@ -119,9 +119,9 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, soc
               <span style={{ fontSize: '1.4rem', marginRight: '0.5rem' }}>⚔️</span> Find Match
             </button>
             <button 
-              className="btn secondary" 
+             // className="btn secondary" 
               onClick={createCustomRoom} 
-              style={{ padding: '0.75rem', fontSize: '0.9rem' }}
+            //  style={{ padding: '0.75rem', fontSize: '0.9rem' }}
             >
               .
             </button>
