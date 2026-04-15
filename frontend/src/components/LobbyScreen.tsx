@@ -15,7 +15,9 @@ interface LobbyScreenProps {
   onMatchFound: (matchId: string) => void;
 }
 
-export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, socket, onMatchFound }) => {
+export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, socket,
+  onMatchFound
+}) => {
   const [isSearching, setIsSearching] = useState(false);
   const [matchmakerTicket, setMatchmakerTicket] = useState('');
   const [gameMode, setGameMode] = useState<'classic' | 'timed'>('classic');
@@ -66,16 +68,15 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, soc
     }
   };
 
-  const createRoom = async () => {
+  const createCustomRoom = async () => {
     try {
       const response = await client.rpc(session, 'create_match', {});
       if (response.payload) {
-        // Nakama JS client already parses JSON payloads into Objects sometimes.
         const payload = typeof response.payload === 'string' ? JSON.parse(response.payload) : response.payload;
         onMatchFound(payload.matchId);
       }
     } catch (err) {
-      console.error(err);
+      console.error("Failed to create custom room:", err);
     }
   };
 
@@ -113,13 +114,19 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, soc
             Cancel Matchmaking...
           </button>
         ) : (
-          <button className="btn" onClick={findMatch} style={{ padding: '1.25rem' }}>
-            <span style={{ fontSize: '1.4rem', marginRight: '0.5rem' }}>⚔️</span> Find Match
-          </button>
+          <>
+            <button className="btn" onClick={findMatch} style={{ padding: '1.25rem' }}>
+              <span style={{ fontSize: '1.4rem', marginRight: '0.5rem' }}>⚔️</span> Find Match
+            </button>
+            <button 
+              className="btn secondary" 
+              onClick={createCustomRoom} 
+              style={{ padding: '0.75rem', fontSize: '0.9rem' }}
+            >
+              Create private match
+            </button>
+          </>
         )}
-        {/* <button className="btn secondary" onClick={createRoom} disabled={isSearching}>
-           Create Custom Room
-        </button> */}
       </div>
 
       <div className="leaderboard">
