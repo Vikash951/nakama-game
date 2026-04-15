@@ -65,7 +65,7 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, soc
       console.error("Failed to cancel matchmaking:", err);
     }
   };
-  
+
   const createRoom = async () => {
     try {
       const response = await client.rpc(session, 'create_match', {});
@@ -74,7 +74,7 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, soc
         const payload = typeof response.payload === 'string' ? JSON.parse(response.payload) : response.payload;
         onMatchFound(payload.matchId);
       }
-    } catch(err) {
+    } catch (err) {
       console.error(err);
     }
   };
@@ -92,15 +92,15 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, soc
       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
         {!isSearching && (
           <div style={{ display: 'flex', gap: '10px' }}>
-            <button 
-              className={`btn ${gameMode === 'classic' ? '' : 'secondary'}`} 
+            <button
+              className={`btn ${gameMode === 'classic' ? '' : 'secondary'}`}
               style={{ flex: 1, padding: '0.75rem', fontSize: '1rem' }}
               onClick={() => setGameMode('classic')}
             >
               Classic
             </button>
-            <button 
-              className={`btn ${gameMode === 'timed' ? '' : 'secondary'}`} 
+            <button
+              className={`btn ${gameMode === 'timed' ? '' : 'secondary'}`}
               style={{ flex: 1, padding: '0.75rem', fontSize: '1rem' }}
               onClick={() => setGameMode('timed')}
             >
@@ -117,9 +117,9 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, soc
             <span style={{ fontSize: '1.4rem', marginRight: '0.5rem' }}>⚔️</span> Find Match
           </button>
         )}
-        <button className="btn secondary" onClick={createRoom} disabled={isSearching}>
+        {/* <button className="btn secondary" onClick={createRoom} disabled={isSearching}>
            Create Custom Room
-        </button>
+        </button> */}
       </div>
 
       <div className="leaderboard">
