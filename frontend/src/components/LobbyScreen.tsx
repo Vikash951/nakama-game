@@ -123,7 +123,7 @@ export const LobbyScreen: React.FC<LobbyScreenProps> = ({ nickname, session, soc
               onClick={createCustomRoom} 
               style={{ padding: '0.75rem', fontSize: '0.9rem' }}
             >
-              Create private match
+              .
             </button>
           </>
         )}
